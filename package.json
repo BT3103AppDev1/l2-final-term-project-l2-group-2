@@ -9,10 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "ccxt": "^4.2.55",
+    "firebase": "^10.9.0",
+    "firebaseui": "^0.600.0",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.4",
+    "socks-proxy-agent": "^8.0.2",
+    "vue": "^3.4.15",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
-    "vite": "^5.1.6"
+    "@vitejs/plugin-vue": "^5.0.3",
+    "vite": "^5.0.11"
   }
 }
