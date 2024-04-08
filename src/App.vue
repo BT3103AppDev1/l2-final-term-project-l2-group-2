@@ -1,16 +1,27 @@
-<script setup>
-import TopNavigationBar from './components/TopNavigationBar.vue';
-import Filters from './components/Filters.vue';
-import InventoryGrid from './components/InventoryGrid.vue';
-
-</script>
-
 <template>
- <TopNavigationBar />
- <Filters />  
- <InventoryGrid />
+  <router-view />
 </template>
 
-<style scoped>
+<script>
+export default {
+  name: "App",
+};
+</script>
 
-</style>./components/InventoryGrid.vue
+<style>
+#app {
+  font-family: Avenir, Arial, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 30px;
+}
+
+#bg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+</style>
