@@ -1,14 +1,20 @@
 <template>
-  <div style="text-align: center">
-    <h1 id="mainHead">OnTrack</h1>
-    <div id="firebaseui-auth-container"></div>
-    <div id="pagecontent">
-      OnTrack is a real-time inventory management system for you to keep track of all product movements.
-      <br />
-      Manage Item Inflow and Outflow in real time.
+  <div class = "main">
+    <div class = "content">
+      <h2> Welcome to </h2>
+      <h1> OnTrack </h1>
+      <div id="firebaseui-auth-container"></div>
+      <br/><br/>
+    <h3> OnTrack is a real-time Inventory Management System </h3>
+      <h4> Keep track of product movements </h4>
+      <h4> Manage item inflow and outflow in real time </h4>
     </div>
+  <div id = "image">
+    <img src ="@/assets/bg.jpg">
   </div>
+</div>
 </template>
+
 
 <script>
 import {
@@ -49,34 +55,58 @@ export default {
 </script>
 
 <style scoped>
+
+.main {
+  height: 100vw;
+  width: 100vw;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.image {
+  float: right;
+  max-width: 10px;
+  max-height: 20%;
+}
+
+
+h1 {
+  color:rgb(223, 36, 36);
+  text-align: center;
+  font-size: 100px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 35px;
+  font-weight: normal;
+  margin-top:0px;
+}
+
+h4 {
+  font-size: 30px;
+  font-weight: normal;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: 1px;
+}
+
+.content {
+  float: left;
+  width: 60%;
+  padding-top: 10%;
+}
+
 #btn {
   text-align: center;
-  margin: auto;
-}
-
-#pagecontent {
-  padding-top: 50px;
-  height: 100px;
-  font-size: larger;
-  font-weight: bolder;
-  text-align: center;
-}
-
-#mainHead {
-  background-color: #818cf8;
-  text-align: center;
-  text-shadow: 2px 2px grey;
-}
-
-#bg {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
-}
-
-h5 {
-  text-align: center;
-  background-color: rgb(194, 202, 188);
 }
 </style>
