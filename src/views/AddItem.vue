@@ -37,7 +37,6 @@ export default {
 <template>
   <div style="text-align: center" v-if="user">
     <NavBar/>
-    <h3>Add Item</h3>
     <Add @added="change" />
     <LogOut />
     <br /><br />

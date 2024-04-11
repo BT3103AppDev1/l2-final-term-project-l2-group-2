@@ -1,41 +1,35 @@
 <template>
   <div class="container">
     <form id="myform">
-      <h2>Add item to your inventory</h2>
+      <h2>Add an item to your inventory</h2>
 
-      <div class="formli">
-        <label for="item1">Item Name: </label>
+      <div class="form-group">
+        <label for="item1"><strong>Item Name:</strong></label>
         <input
           type="text"
           id="item1"
-          required=""
-          placeholder="Enter item name"
-        />
-        <br /><br />
-        <!-- <label for="img1">Image: </label>
-        <input
-          type="text"
-          id="img1"
-          required=""
-          placeholder="img"
-        /> -->
-        <br /><br />
-        <label for="price1">Price: </label>
+          required
+          placeholder="Enter the item name"
+          class="input-field"
+        /><br /><br />
+        <label for="price1"><strong>Price:</strong></label>
         <input
           type="number"
           id="price1"
-          required=""
+          required
           placeholder="Enter the price"
+          class="input-field"
         /><br /><br />
-        <label for="stock1">Stock: </label>
+        <label for="stock1"><strong>Stock:</strong></label>
         <input
           type="number"
           id="stock1"
-          required=""
-          placeholder="Enter Stock"
+          required
+          placeholder="Enter the stock quantity"
+          class="input-field"
         /><br /><br />
         <div class="save">
-          <button id="savebutton" type="button" v-on:click="savetofs">
+          <button id="savebutton" type="button" v-on:click="savetofs" class="nav-button">
             Save
           </button>
         </div>
@@ -64,10 +58,7 @@ export default {
 
   methods: {
     async savetofs() {
-      console.log("IN AC");
-
       let item = document.getElementById("item1").value;
-      // let image = document.getElementById("image1").value;
       let price = document.getElementById("price1").value;
       let stock = document.getElementById("stock1").value;
 
@@ -76,7 +67,6 @@ export default {
       try {
         const docRef = await setDoc(doc(db, String(this.useremail), item), {
           Item: item,
-        //  Image: image,
           Price: price,
           Stock: stock,
         });
@@ -92,27 +82,66 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 h2 {
-  background-color: #818cf8;
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
-.formli {
-  display: inline-block;
-  text-align: right;
+.form-group {
+  text-align: left; /* Align form elements to the left */
+  max-width: 400px; /* Limit the maximum width of the form */
+  margin: 0 auto; /* Center the form horizontally */
 }
 
-form {
-  text-align: center;
-  align-items: center;
-  margin: autp;
+.input-field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
-input:hover {
-  box-shadow: 2px 2px #6366f1;
-  border-radius: 2px;
+.input-field:hover {
+  border-color: #2c3e50;
 }
 
 .save {
   text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2c3e50;
+}
+
+.nav-button {
+  padding: 10px 20px;
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background-color: #2c3e50;
 }
 </style>
