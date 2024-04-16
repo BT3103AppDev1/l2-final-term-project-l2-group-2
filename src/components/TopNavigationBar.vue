@@ -1,16 +1,17 @@
 <template>
   <div id="logged" v-if="user">
-    <div id="nav">
+    <nav id="navbar">
       <div class="navbar-brand">
-        <img src = '@/assets/onTrackLogi.jpg' alt="OnTrack Logo">
+        <img src="@/assets/onTrackLogi.jpg" alt="OnTrack Logo">
       </div>
-      <router-link to="/about">About</router-link> |
-      <router-link to="/inventory">Inventory Management</router-link> |
-      <router-link to="/sales">Sales Dashboard</router-link> |
-      <router-link to="/profile">Profile</router-link> |
-      <router-link to="/addItem">Add Item</router-link>
-
-    </div>
+      <ul class="nav-links">
+        <li><router-link to="/about">About</router-link></li>
+        <li><router-link to="/inventory">Inventory</router-link></li>
+        <li><router-link to="/sales">Sales</router-link></li>
+        <li><router-link to="/profile">Profile</router-link></li>
+        <li><router-link to="/addItem">Add Item</router-link></li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -19,13 +20,11 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   name: "NavBar",
-
   data() {
     return {
       user: false,
     };
   },
-
   mounted() {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -38,28 +37,50 @@ export default {
 </script>
 
 <style scoped>
-#nav {
+#navbar {
+  background-color: #2c3e50; /* Dark background color */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding around navbar */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f4e8de;
-  color: black;
-  height:5vh;
-  width: 100vw;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  border-radius: 8px; /* Rounded corners for the navbar */
 }
 
 .navbar-brand img {
-    height: 5vh;
-    width: 6vw;
-  }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  height: 40px; /* Adjust logo size */
 }
 
-#nav a.router-link-exact-active {
-  color: #6366f1;
+.nav-links {
+  list-style: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px; /* Spacing between links */
+}
+
+.nav-links li:first-child {
+  margin-left: 0; /* No margin for first link */
+}
+
+.nav-links a {
+  color: white; /* Link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s; /* Smooth transition for color change */
+  padding: 10px; /* Add padding around links */
+  border-radius: 5px; /* Round the corners of links */
+  font-weight: 500; /* Bold font weight */
+}
+
+.nav-links a:hover {
+  background-color: #34495e; /* Darker background color on hover */
+}
+
+.nav-links a.router-link-active {
+  background-color: #34495e; /* Highlight background color for active link */
 }
 </style>
-
