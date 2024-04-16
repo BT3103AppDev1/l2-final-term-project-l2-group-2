@@ -71,6 +71,9 @@ export default {
       let price = document.getElementById("price1").value;
       let stock = document.getElementById("stock1").value;
 
+      //Parse stock as an integer
+      stock = parseInt(stock,10);
+
       alert("Saving your data for item : " + item);
 
       try {

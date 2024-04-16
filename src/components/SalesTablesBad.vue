@@ -11,11 +11,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(row, index) in tableData" :key="index">
-            <td>{{ row.column1 }}</td>
-            <td>{{ row.column2 }}</td>
-            <td>{{ row.column3 }}</td>
-            <td>{{ row.column4 }}</td>
+          <tr v-for="(item, index) in LowProfitItems.slice(0,10)" :key="index">
+            <td>{{ item.name }}</td>
+            <td>{{ '$' + item.price }}</td>
+            <td>{{ item.sales }}</td>
+            <td>{{ '$' + item.profit.toFixed(2) }}</td>
           </tr>
         </tbody>
       </table>
@@ -23,19 +23,67 @@
   </template>
 
 <script>
+import firebaseApp from '../firebase.js';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+
+const db = getFirestore(firebaseApp);
+
 export default {
   name: "MyTable",
   data() {
     return {
-      tableData: [
-        { column1: "The Gruffalo", column2: "$15.00", column3: "1", column4: "$15.00" },
-        { column1: "Self Made Bracelet B/W", column2: "$12.00", column3: "5", column4: "$60.00" },
-        { column1: "PaperOne Copier Paper A4", column2: "$4.20", column3: "15", column4: "$63.00" },
-        // Add more rows as needed
-      ]
+      LowProfitItems: [],
+      useremail: ''
     };
   },
-};
+  async mounted() {
+    const auth = getAuth(firebaseApp); // Pass the firebaseApp to getAuth()
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.useremail = user.email;
+        this.fetchLowProfitItems(this.useremail);
+      } else {
+        this.useremail = '';
+        this.LowProfitItems = [];
+      }
+    });
+  },
+  methods: {
+    async fetchLowProfitItems(useremail) {
+      try {
+        console.log("Fetching data for user:", useremail);
+        const q = query(collection(db, useremail));
+        const querySnapshot = await getDocs(q);
+        const items = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          console.log("Retrieved data for document", doc.id + ":", data);
+          const price = data.Price;
+          const sales = data.Sales;
+          const profit = price * sales;
+          items.push({
+            key: doc.id,
+            name: data.Item,
+            price: data.Price,
+            sales: data.Sales,
+            profit: profit
+          });
+        });
+        console.log("All items:", items);
+
+        // Sort items by profit in ascending order
+        items.sort((a, b) => a.profit - b.profit);
+
+        console.log("Items sorted by profit:", items);
+        this.LowProfitItems = items;
+      } catch (error) {
+        console.error("Error fetching and updating data:", error);
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>
