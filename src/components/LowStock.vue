@@ -1,7 +1,7 @@
 <template>
-    <div class="sales-table">
-      <h2>Low Stock Items</h2>
-      <table class="center styled-table">
+  <div class="sales-table">
+    <h2>Low Stock Items</h2>
+    <table class="center styled-table">
         <thead>
           <tr>
             <th>Item Name</th>
@@ -9,29 +9,72 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(row, index) in tableData" :key="index">
-            <td>{{ row.column1 }}</td>
-            <td class="stocks">{{ row.column2 }}</td>
+          <tr v-for="(item, index) in lowStockItems" :key="index">
+            <td>{{ item.name }}</td>
+            <td class="stocks">{{ item.stock }}</td>
           </tr>
         </tbody>
-      </table>
-    </div>
-  </template>
+    </table>
+  </div>
+</template>
 
 <script>
+import firebaseApp from '../firebase.js';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+
+const db = getFirestore(firebaseApp);
+
 export default {
   name: "MyTable",
   data() {
     return {
-      tableData: [
-        { column1: "Lays Potato Chips Classic", column2: "5"},
-        { column1: "Self Made Brown Card Holder", column2: "3"},
-        { column1: "Iphone 13 Pro Clear Case", column2: "$1"},
-        // Add more rows as needed
-      ]
+      lowStockItems: [],
+      useremail: ''
     };
   },
-};
+  async mounted() {
+    const auth = getAuth(firebaseApp); // Pass the firebaseApp to getAuth()
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.useremail = user.email;
+        this.fetchAndUpdateData(this.useremail);
+      } else {
+        this.useremail = '';
+        this.lowStockItems = [];
+      }
+    });
+  },
+  methods: {
+    async fetchAndUpdateData(useremail) {
+      try {
+        console.log("Fetching data for user:", useremail);
+        const q = query(collection(db, useremail), orderBy('Stock', 'asc'));
+        const querySnapshot = await getDocs(q);
+        const items = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          console.log("Retrieved data for document", doc.id + ":", data);
+          items.push({
+            key: doc.id,
+            name: data.Item,
+            stock: data.Stock
+          });
+        });
+        console.log("All items:", items);
+
+        // Filter items with stock less than 100
+        const lowStockItems = items.filter(item => item.stock < 100);
+        console.log("Low stock items:", lowStockItems);
+        
+        this.lowStockItems = lowStockItems;
+      } catch (error) {
+        console.error("Error fetching and updating data:", error);
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>
