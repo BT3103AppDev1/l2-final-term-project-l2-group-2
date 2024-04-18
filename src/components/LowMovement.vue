@@ -5,17 +5,13 @@
         <thead>
           <tr>
             <th>Item Name</th>
-            <th>Sale Price</th>
             <th>Sale Quantity</th>
-            <th>Profits</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(row, index) in tableData" :key="index">
-            <td>{{ row.column1 }}</td>
-            <td>{{ row.column2 }}</td>
-            <td>{{ row.column3 }}</td>
-            <td>{{ row.column4 }}</td>
+          <tr v-for="(item, index) in LowMovementItems.slice(0,10)" :key="index">
+            <td>{{ item.name }}</td>
+            <td>{{ item.sales }}</td>
           </tr>
         </tbody>
       </table>
@@ -23,19 +19,60 @@
   </template>
 
 <script>
+import firebaseApp from '../firebase.js';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+
+const db = getFirestore(firebaseApp);
+
 export default {
-  name: "MyTable",
-  data() {
-    return {
-      tableData: [
-        { column1: "The Gruffalo", column2: "$15.00", column3: "1", column4: "$15.00" },
-        { column1: "Self Made Bracelet B/W", column2: "$12.00", column3: "5", column4: "$60.00" },
-        { column1: "PaperOne Copier Paper A4", column2: "$4.20", column3: "15", column4: "$63.00" },
-        // Add more rows as needed
-      ]
-    };
-  },
-};
+name: "MyTable",
+data() {
+  return {
+    LowMovementItems: [],
+    useremail: ''
+  };
+},
+async mounted() {
+  const auth = getAuth(firebaseApp); // Pass the firebaseApp to getAuth()
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      this.useremail = user.email;
+      this.fetchLowMovementItems(this.useremail);
+    } else {
+      this.useremail = '';
+      this.LowMovementItems = [];
+    }
+  });
+},
+methods: {
+  async fetchLowMovementItems(useremail) {
+    try {
+      console.log("Fetching data for user:", useremail);
+      const q = query(collection(db, useremail), orderBy('Sales', 'asc'));
+      const querySnapshot = await getDocs(q);
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        console.log("Retrieved data for document", doc.id + ":", data);
+        items.push({
+          key: doc.id,
+          name: data.Item,
+          sales: data.Sales,
+        });
+      });
+      console.log("All items:", items);
+
+
+      console.log("Items sorted by sales:", items);
+      this.LowMovementItems = items;
+    } catch (error) {
+      console.error("Error fetching and updating data:", error);
+    }
+  }
+}
+}
 </script>
 
 <style scoped>
