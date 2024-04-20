@@ -87,6 +87,7 @@ export default {
 </script>
 
 <style scoped>
+
 /* Center align the table */
 .center {
   margin: 0 auto;

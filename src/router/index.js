@@ -7,6 +7,11 @@ import LogOut from "@/components/LogOut.vue";
 import NotFound from "@/views/NotFound.vue";
 import Profile from "@/views/Profile.vue";
 import Sales from "@/views/Sales.vue";
+import Analytics from "@/views/Analytics.vue";
+import ProfitAnalysis from "@/views/ProfitAnalysis.vue";
+import Stock from "@/views/Stock.vue";
+import Movement from "@/views/Movement.vue";
+
 const routes = [
   {
     path: "/",
@@ -48,6 +53,26 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/analytics",
+    name: "Analytics",
+    component: Analytics,
+  },
+  {
+    path: "/analytics-profit",
+    name: "ProfitAnalysis",
+    component: ProfitAnalysis,
+  },
+  {
+    path: "/analytics-stock",
+    name: "Stock",
+    component: Stock,
+  },
+  {
+    path: "/analytics-movement",
+    name: "Movement",
+    component: Movement,
   },
 ];
 const router = createRouter({

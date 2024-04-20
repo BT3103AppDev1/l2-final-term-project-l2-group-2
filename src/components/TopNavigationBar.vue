@@ -7,7 +7,7 @@
       <ul class="nav-links">
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/inventory">Inventory</router-link></li>
-        <li><router-link to="/sales">Sales</router-link></li>
+        <li><router-link to="/analytics">Analytics</router-link></li>
         <li><router-link to="/profile">Profile</router-link></li>
         <li><router-link to="/addItem">Add Item</router-link></li>
       </ul>
