@@ -6,7 +6,6 @@ import Login from "@/components/Login.vue";
 import LogOut from "@/components/LogOut.vue";
 import NotFound from "@/views/NotFound.vue";
 import Profile from "@/views/Profile.vue";
-import Sales from "@/views/Sales.vue";
 import Analytics from "@/views/Analytics.vue";
 import ProfitAnalysis from "@/views/ProfitAnalysis.vue";
 import Stock from "@/views/Stock.vue";
