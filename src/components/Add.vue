@@ -12,6 +12,14 @@
           placeholder="Enter the item name"
           class="input-field"
         /><br /><br />
+        <label for="description1"><strong>Item Description:</strong></label>
+        <input
+          type="text"
+          id="description1"
+          required
+          placeholder="Enter item description"
+          class="input-field"
+        /><br /><br />
         <label for="price1"><strong>Price:</strong></label>
         <input
           type="number"
@@ -59,6 +67,7 @@ export default {
   methods: {
     async savetofs() {
       let item = document.getElementById("item1").value;
+      let description = document.getElementById("description1").value;
       let price = document.getElementById("price1").value;
       let stock = document.getElementById("stock1").value;
 
@@ -70,6 +79,7 @@ export default {
       try {
         const docRef = await setDoc(doc(db, String(this.useremail), item), {
           Item: item,
+          Description: description,
           Price: price,
           Stock: stock,
         });
