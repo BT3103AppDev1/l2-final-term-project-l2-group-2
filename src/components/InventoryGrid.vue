@@ -2,36 +2,69 @@
   <div class="inventory-grid">
     <ProductCard
       v-for="product in products"
-      :key="product.id"
+      :key="product.name"
       :product="product"
     />
   </div>
 </template>
 
 <script>
+import firebaseApp from '../firebase.js';
+import { getFirestore } from 'firebase/firestore';
+import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
+import ccxt from 'ccxt';
+import { getAuth } from 'firebase/auth';
 import ProductCard from './ProductCard.vue';
 
+const db = getFirestore(firebaseApp);
+
 export default {
+  data() {
+    return {
+      useremail: '',
+      products: [],
+    };
+  },
+
+  async mounted() {
+    const auth = getAuth();
+    this.useremail = auth.currentUser.email;
+    console.log('User Email:', this.useremail);
+    await this.fetchAndUpdateData(this.useremail);
+  },
+  
+  methods: {
+    async fetchAndUpdateData(useremail) {
+      console.log('Fetching data for:', useremail);
+      let allDocuments = await getDocs(collection(db, String(useremail)));
+      console.log('All Documents:', allDocuments.docs);
+
+      this.products = await Promise.all(
+        allDocuments.docs.map(async (doc) => {
+          console.log('Document Data:', doc.data());
+
+          let documentData = doc.data();
+
+          let name = documentData.Item;
+          let description = documentData.Description;
+          let price = documentData.Price;
+          let quantity = documentData.Stock; //quantity will equal stock, stock changes when I sell
+
+          return {
+            name,
+            description,
+            price,
+            quantity,
+          };
+        }),
+      );
+      console.log('Updated Products:', this.products);
+    },
+  },
+
   components: {
     ProductCard
   },
-  data() {
-    return {
-      products: [
-        // Populate this array with product objects
-         { id: 1, name: 'Black Ballpoint Pen', image: 'item1.jpg', price: 2.20, quantity: 60,sellQuantity: 1},
-         { id: 2, name: 'Iphone 13 Pro Clear Case', image: 'item2.jpg', price: 4.00, quantity: 54,sellQuantity: 1},
-         { id: 3, name: 'Lays Potato Chips Classic 170g', image: 'item3.jpg', price: 6.20, quantity: 43,sellQuantity: 1},
-         { id: 4, name: 'Self Made brown Card Holder', image: 'item4.jpg', price: 7.00, quantity: 32,sellQuantity: 1},
-         { id: 5, name: 'PaperOne Copier Paper A4', image: 'item5.jpg', price: 4.20, quantity: 15,sellQuantity: 1},
-         { id: 6, name: 'Totoro Brown wallet', image: 'item6.jpg', price: 22.00, quantity: 8,sellQuantity: 1},
-         { id: 7, name: 'Self Made Bracelet B/W', image: 'item7.jpg', price: 12.00, quantity: 5,sellQuantity: 1},
-         { id: 8, name: 'The Gruffalo', image: 'item8.jpg', price: 15.00, quantity: 1,sellQuantity: 1},
-         
-        // ...
-      ]
-    };
-  }
 };
 </script>
 
