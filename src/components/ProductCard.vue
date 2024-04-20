@@ -1,9 +1,9 @@
 <template>
   <div class="product-card">
-    <img :src='product.image' :alt="product.name">
+    <!-- <img :src='product.image' :alt="product.name"> -->
     <h3>{{ product.name }}</h3>
     <p>{{ product.description }}</p>
-    <div class="price">${{ product.price.toFixed(2) }}</div>
+    <div class="price">${{ product.price/*.toFixed(2)*/ }}</div>
     <div class="quantity">({{ product.quantity }})</div>
     <div class="sell-section">
       <input type="number" class="quantity-input" v-model="product.sellQuantity" min="1">

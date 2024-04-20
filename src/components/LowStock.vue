@@ -1,26 +1,22 @@
 <template>
-    <div class="sales-table">
-      <h2>Highest profit items</h2>
-      <table class="center styled-table">
+  <div class="sales-table">
+    <h2>Low Stock Items</h2>
+    <table class="center styled-table">
         <thead>
           <tr>
             <th>Item Name</th>
-            <th>Sale Price</th>
-            <th>Sale Quantity</th>
-            <th>Profits</th>
+            <th>Item Stock</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, index) in HighProfitItems.slice(0,10)" :key="index">
+          <tr v-for="(item, index) in lowStockItems" :key="index">
             <td>{{ item.name }}</td>
-            <td>{{ '$' + item.price }}</td>
-            <td>{{ item.sales }}</td>
-            <td>{{ '$' + item.profit.toFixed(2) }}</td>
+            <td class="stocks">{{ item.stock }}</td>
           </tr>
         </tbody>
-      </table>
-    </div>
-  </template>
+    </table>
+  </div>
+</template>
 
 <script>
 import firebaseApp from '../firebase.js';
@@ -34,7 +30,7 @@ export default {
   name: "MyTable",
   data() {
     return {
-      HighProfitItems: [],
+      lowStockItems: [],
       useremail: ''
     };
   },
@@ -43,41 +39,36 @@ export default {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.useremail = user.email;
-        this.fetchHighProfitItems(this.useremail);
+        this.fetchAndUpdateData(this.useremail);
       } else {
         this.useremail = '';
-        this.HighProfitItems = [];
+        this.lowStockItems = [];
       }
     });
   },
   methods: {
-    async fetchHighProfitItems(useremail) {
+    async fetchAndUpdateData(useremail) {
       try {
         console.log("Fetching data for user:", useremail);
-        const q = query(collection(db, useremail));
+        const q = query(collection(db, useremail), orderBy('Stock', 'asc'));
         const querySnapshot = await getDocs(q);
         const items = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           console.log("Retrieved data for document", doc.id + ":", data);
-          const price = data.Price;
-          const sales = data.Sales;
-          const profit = price * sales;
           items.push({
             key: doc.id,
             name: data.Item,
-            price: data.Price,
-            sales: data.Sales,
-            profit: profit
+            stock: data.Stock
           });
         });
         console.log("All items:", items);
 
-        // Sort items by profit in descending order
-        items.sort((a, b) => b.profit - a.profit);
-
-        console.log("Items sorted by profit:", items);
-        this.HighProfitItems = items;
+        // Filter items with stock less than 100
+        const lowStockItems = items.filter(item => item.stock < 100);
+        console.log("Low stock items:", lowStockItems);
+        
+        this.lowStockItems = lowStockItems;
       } catch (error) {
         console.error("Error fetching and updating data:", error);
       }
@@ -101,7 +92,7 @@ export default {
 }
 
 .styled-table thead tr {
-    background-color: #009879;
+    background-color: #cf4747;
     color: #ffffff;
     text-align: left;
 }
@@ -120,6 +111,10 @@ export default {
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #cf4747;
+}
+
+.stocks {
+    background-color: #e99d9d;
 }
 </style>
