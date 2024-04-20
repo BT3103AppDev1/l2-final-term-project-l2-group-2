@@ -6,6 +6,7 @@
         <div class = "content-container">
             <lowstock />
         </div>
+        <button id = "back" @click="back()"> Back to Analytics </button>
     </div>
   </template>
   
@@ -18,6 +19,11 @@ export default {
   components: {
     NavBar,
     lowstock,
+  },
+  methods: {
+    back() {
+        this.$router.push({ name: 'Analytics' });
+    }
   },
   data() {
     return {
@@ -46,5 +52,8 @@ export default {
 .navbar-container {
   width: 100%; 
 }
+
+
+
 </style>
   

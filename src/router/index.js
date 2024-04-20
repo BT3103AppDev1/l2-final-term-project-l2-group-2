@@ -33,11 +33,6 @@ const routes = [
     component: About,
   },
   {
-    path: "/sales",
-    name: "Sales",
-    component: Sales,
-  },
-  {
     path: "/addItem",
     name: "AddItem",
     component: AddItem,

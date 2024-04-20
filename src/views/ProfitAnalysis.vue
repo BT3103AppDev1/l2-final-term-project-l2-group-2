@@ -7,6 +7,7 @@
             <salestable />
             <salestablebad />
         </div>
+        <button id = "back" @click="back()"> Back to Analytics </button>
     </div>
   </template>
   
@@ -21,6 +22,11 @@ export default {
     NavBar,
     salestablebad,
     salestable,
+  },
+  methods: {
+    back() {
+        this.$router.push({ name: 'Analytics' });
+    }
   },
   data() {
     return {
