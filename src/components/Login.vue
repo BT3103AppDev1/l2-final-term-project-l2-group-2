@@ -17,41 +17,35 @@
 
 
 <script>
-import {
-  getAuth,
-  onAuthStateChanged,
-  EmailAuthProvider,
-  GoogleAuthProvider,
-} from "firebase/auth";
-import * as firebaseui from "firebaseui";
-import "firebaseui/dist/firebaseui.css";
+import firebase from '@/uifire.js'
+import 'firebase/compat/auth';
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 
 export default {
-  name: "Login",
-
-  data() {
-    return {
-      user: false,
-    };
-  },
+    name:"Login",
 
   mounted() {
-    const auth = getAuth();
-    var ui = firebaseui.auth.AuthUI.getInstance();
-    if (!ui) ui = new firebaseui.auth.AuthUI(auth);
-    const uiConfig = {
-      signInSuccessUrl: "/home",
-      signInOptions: [
-        EmailAuthProvider.PROVIDER_ID,
-        GoogleAuthProvider.PROVIDER_ID,
-      ],
-    };
-    ui.start("#firebaseui-auth-container", uiConfig);
-    onAuthStateChanged(auth, (user) => {
-      if (user) this.user = user;
-    });
-  },
-};
+         
+        // If already an instance is created, get it
+        var ui = firebaseui.auth.AuthUI.getInstance();
+
+        // For creating first instance       
+        if (!ui){
+        ui = new firebaseui.auth.AuthUI(firebase.auth());
+        }      
+
+        var uiConfig = {
+            signInSuccessUrl: '/about',
+            signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            ]
+            
+        };
+        ui.start("#firebaseui-auth-container", uiConfig)    
+}
+}
 </script>
 
 <style scoped>
