@@ -36,6 +36,9 @@
           placeholder="Enter the stock quantity"
           class="input-field"
         /><br /><br />
+
+        <input type="file" ref="fileInput">
+
         <div class="save">
           <button id="savebutton" type="button" v-on:click="savetofs" class="nav-button">
             Save
@@ -50,6 +53,7 @@
 import firebaseApp from "../firebase";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
+import { ref, getStorage, uploadBytes } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 const db = getFirestore(firebaseApp);
 
@@ -70,18 +74,25 @@ export default {
       let description = document.getElementById("description1").value;
       let price = document.getElementById("price1").value;
       let stock = document.getElementById("stock1").value;
-
+      let file = this.$refs.fileInput.files[0]; // Get the selected file from the file input
       //Parse stock as an integer
       stock = parseInt(stock,10);
 
       alert("Saving your data for item : " + item);
 
       try {
+        // Upload file to Firebase Storage
+        const storage = getStorage();
+        const storageRef = ref(storage, 'images/' + file.name);
+        const snapshot = await uploadBytes(storageRef, file);
+        console.log('Uploaded a file:', snapshot.metadata.name);
+
         const docRef = await setDoc(doc(db, String(this.useremail), item), {
           Item: item,
           Description: description,
           Price: price,
           Stock: stock,
+          ImageUrl: snapshot.metadata.fullPath // Save the image URL in Firestore
         });
         console.log(docRef);
         document.getElementById("myform").reset();
