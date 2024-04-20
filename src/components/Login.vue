@@ -1,20 +1,18 @@
 <template>
-  <div class = "main">
-    <div class = "content">
+  <div id = "main">
+    <div id = "content">
       <h2> Welcome to </h2>
       <h1> OnTrack </h1>
+      <br/><br/>
       <div id="firebaseui-auth-container"></div>
       <br/><br/>
-    <h3> OnTrack is a real-time Inventory Management System </h3>
-      <h4> Keep track of product movements </h4>
-      <h4> Manage item inflow and outflow in real time </h4>
+      <h3> Manage your inventory with ease </h3>
     </div>
-  <div id = "image">
-    <img src ="@/assets/bg.jpg">
-  </div>
+    <div id="image" >
+      <img src = "@/assets/bg.jpg">
+    </div>
 </div>
 </template>
-
 
 <script>
 import {
@@ -56,25 +54,31 @@ export default {
 
 <style scoped>
 
-.main {
-  height: 100vw;
-  width: 100vw;
-  min-width: 100vw;
+#main {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 100vh;
+  width: 100%;
 }
 
-.image {
+#image {
   float: right;
-  max-width: 10px;
-  max-height: 20%;
+  width: 60%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 
 h1 {
   color:rgb(223, 36, 36);
-  text-align: center;
+  text-align:center;
   font-size: 100px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   margin-top: 20px;
@@ -87,26 +91,24 @@ h2 {
 }
 
 h3 {
-  font-size: 35px;
-  font-weight: normal;
-  margin-top:0px;
+  font-size: 28px;
+  color: grey;
 }
 
-h4 {
-  font-size: 30px;
-  font-weight: normal;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  text-align: 1px;
-}
-
-.content {
+#content {
   float: left;
   width: 60%;
   padding-top: 10%;
+  box-sizing: border-box;
 }
 
 #btn {
+  font-size: 18px;
+  padding: 12px 20px;
+  min-height: 50px;
+  width: auto;
+  border-radius: 5px;
   text-align: center;
 }
+
 </style>
