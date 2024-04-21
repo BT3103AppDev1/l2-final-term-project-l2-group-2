@@ -3,6 +3,9 @@
         <div v-if="user" class="navbar-container">
             <NavBar />
         </div>
+        <div class = "header">
+          <h2> Data Visualisation and Analytics </h2>
+        </div>
         <div class="tab-container">
             <div class="analytics-grid">
                 <div class="analytics-section" @click="$router.push({ name: 'ProfitAnalysis' })">
@@ -18,9 +21,7 @@
                     <p> Movement Analysis </p>
                 </div>
             </div>
-      <div class="logout-container">
-      <LogOut />
-      </div>
+            <LogOut />
     </div>
   </div>
 </template>
@@ -68,7 +69,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
   grid-template-columns: repeat(3, 1fr); 
   width: 60%;
   gap: 50px;
-  margin-top: 150px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   justify-content: center;
   align-items: center;
   margin-left: auto;
@@ -98,12 +100,23 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
   text-align: center;
 }
 
-.logout-container {
-  width: 100%; 
-  display: flex;
-  justify-content: center; 
+.log-out {
   margin-top: auto; 
-  padding: 80px 0; 
+  text-align: center; 
+  padding-bottom: 1rem; 
+}
+
+.header {
+  width: 100%;
+  background-color: #5a7693;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-weight:lighter;
+}
+
+.navbar-container {
+  width: 100%;
 }
 
 </style>

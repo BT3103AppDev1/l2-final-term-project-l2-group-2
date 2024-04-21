@@ -69,7 +69,7 @@ export default {
 
 
 .img {
-  width: 43%; /* Adjust as needed */
+  width: 43%; 
   height: auto;
   margin-right: 20px;
 }

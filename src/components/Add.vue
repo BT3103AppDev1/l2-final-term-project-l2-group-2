@@ -40,6 +40,7 @@
         <input type="file" ref="fileInput">
 
         <div class="save">
+          <br /><br />
           <button id="savebutton" type="button" v-on:click="savetofs" class="nav-button">
             Save
           </button>
@@ -114,7 +115,7 @@ export default {
 }
 
 h2 {
-  background-color: #2c3e50;
+  background-color: #3d5975;
   color: white;
   padding: 10px;
   border-radius: 8px;
