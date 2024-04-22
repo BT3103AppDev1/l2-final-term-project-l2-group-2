@@ -5,11 +5,13 @@
     <h4>Please click on the above available options</h4>
     <LogOut />
     <br /><br />
+    <FootBar />
   </div>
 </template>
 
 <script>
 import LogOut from "@/components/LogOut.vue";
+import FootBar from "@/components/FooterBar.vue";
 import NavBar from "@/components/TopNavigationBar.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default {
@@ -17,6 +19,7 @@ export default {
   components: {
     LogOut,
     NavBar,
+    FootBar,
   },
   data() {
     return {

@@ -1,5 +1,6 @@
 <script>
 import Add from "@/components/Add.vue";
+import FootBar from "@/components/FooterBar.vue";
 import LogOut from "@/components/LogOut.vue";
 import NavBar from "@/components/TopNavigationBar.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -10,6 +11,7 @@ export default {
     Add,
     LogOut,
     NavBar, 
+    FootBar,
   },
   data() {
     return {
@@ -40,5 +42,6 @@ export default {
     <Add @added="change" />
     <LogOut />
     <br /><br />
+    <FootBar />
   </div>
 </template>

@@ -9,12 +9,14 @@
         </div>
         <button id = "back" @click="back()"> Back to Analytics </button>
     </div>
+    <FootBar />
   </template>
   
 <script>
 import salestable from "@/components/SalesTable.vue";
 import salestablebad from "@/components/SalesTablesBad.vue";
 import NavBar from "@/components/TopNavigationBar.vue";
+import FootBar from "@/components/FooterBar.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
   
 export default {
@@ -22,6 +24,7 @@ export default {
     NavBar,
     salestablebad,
     salestable,
+    FootBar,
   },
   methods: {
     back() {

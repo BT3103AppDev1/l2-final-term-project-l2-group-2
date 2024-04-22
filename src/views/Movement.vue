@@ -8,12 +8,14 @@
             <lowmovement />
         </div>
         <button id = "back" @click="back()"> Back to Analytics </button>
+        <FootBar />
     </div>
   </template>
   
 <script>
 import lowmovement from "@/components/LowMovement.vue";
 import highmovement from "@/components/HighMovement.vue";
+import FootBar from "@/components/FooterBar.vue";
 import NavBar from "@/components/TopNavigationBar.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
   
@@ -22,6 +24,7 @@ export default {
     NavBar,
     lowmovement,
     highmovement,
+    FootBar,
   },
   methods: {
     back() {

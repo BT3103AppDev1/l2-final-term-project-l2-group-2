@@ -23,11 +23,13 @@
             </div>
             <LogOut />
     </div>
+    <FootBar />
   </div>
 </template>
   
 <script>
 import LogOut from "@/components/LogOut.vue";
+import FootBar from "@/components/FooterBar.vue";
 import NavBar from "@/components/TopNavigationBar.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
   
@@ -36,6 +38,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
     components: {
         LogOut,
         NavBar,
+        FootBar,
     },
     data() {
       return {

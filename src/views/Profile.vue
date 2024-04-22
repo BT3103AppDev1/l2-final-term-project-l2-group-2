@@ -20,17 +20,20 @@
     </div>
   </div>
   <LogOut />
+  <FootBar />
 </template>
 
 <script>
 import LogOut from "@/components/LogOut.vue";
 import NavBar from "@/components/TopNavigationBar.vue";
+import FootBar from "@/components/FooterBar.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default {
   name: "Profile",
   components: {
     LogOut,
     NavBar,
+    FootBar,
   },
   data() {
     return {

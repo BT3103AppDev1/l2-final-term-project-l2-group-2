@@ -3,6 +3,7 @@
     <NavBar/>
     <InventoryGrid/>
     <LogOut /> <br /><br />
+    <FootBar />
   </div>
   
 </template>
@@ -10,6 +11,7 @@
 <script>
 import NavBar from "@/components/TopNavigationBar.vue";
 import LogOut from "@/components/LogOut.vue";
+import FootBar from "@/components/FooterBar.vue";
 import InventoryGrid from "@/components/InventoryGrid.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -18,6 +20,7 @@ export default {
     InventoryGrid,
     NavBar,
     LogOut,
+    FootBar,
   },
   data() {
     return {
