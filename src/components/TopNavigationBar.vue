@@ -49,7 +49,8 @@ export default {
 }
 
 .navbar-brand img {
-  height: 40px; /* Adjust logo size */
+  height: 50px; /* Adjust logo size */
+  vertical-align: middle; /* Center logo vertically */
 }
 
 .nav-links {
