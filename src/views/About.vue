@@ -100,21 +100,25 @@ export default {
   padding: 1rem;
   overflow: hidden; /* Prevents content from overflowing */
   box-sizing: border-box; /* Includes padding in width calculation */
+  height: 45vh;
 }
 
 .text-content h1 {
-  font-size: 2.5rem; /* More responsive font size */
+  font-size: 3rem; /* More responsive font size */
   color: #333;
-  margin-top: 0;
+  margin-top: 3rem;
   margin-bottom: 1rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .text-content p {
-  color:  #525151;
-  font-size: 1rem; /* More appropriate text size */
-  padding: 0 1rem; /* Adds padding to text */
+  color:  #4b4a4a;
+  font-size: 1.5rem; /* More appropriate text size */
+  padding: 2rem 0rem; /* Adds padding to text */
   line-height: 1.75;
   text-align: justify;
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 .logout-container {
