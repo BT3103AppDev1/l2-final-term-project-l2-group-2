@@ -7,18 +7,21 @@
             <lowstock />
         </div>
         <button id = "back" @click="back()"> Back to Analytics </button>
+        <FootBar />
     </div>
   </template>
   
 <script>
 import lowstock from "@/components/LowStock.vue";
 import NavBar from "@/components/TopNavigationBar.vue";
+import FootBar from "@/components/FooterBar.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
   
 export default {
   components: {
     NavBar,
     lowstock,
+    FootBar,
   },
   methods: {
     back() {

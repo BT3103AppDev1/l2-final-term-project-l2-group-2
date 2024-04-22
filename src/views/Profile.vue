@@ -3,6 +3,7 @@
   <div class = "navbar-container">
     <NavBar/>
   </div>
+<<<<<<< HEAD
   <div class = "header">
     <h2> Profile </h2>
     <p> Check profile details </p>
@@ -18,6 +19,10 @@
   </div>
   </div>
   <LogOut/>
+=======
+  <LogOut />
+  <FootBar />
+>>>>>>> dc23eb12be807a0ebb588fd3b934337db5f9bad7
 </template>
 
 
@@ -25,12 +30,14 @@
 <script>
 import LogOut from "@/components/LogOut.vue";
 import NavBar from "@/components/TopNavigationBar.vue";
+import FootBar from "@/components/FooterBar.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default {
   name: "Profile",
   components: {
     LogOut,
     NavBar,
+    FootBar,
   },
   data() {
     return {
