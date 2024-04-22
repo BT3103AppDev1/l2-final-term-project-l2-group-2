@@ -73,7 +73,7 @@ export default {
 h1 {
   color:rgb(223, 36, 36);
   text-align:center;
-  font-size: 100px;
+  font-size: 110px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   margin-top: 20px;
   margin-bottom: 20px;

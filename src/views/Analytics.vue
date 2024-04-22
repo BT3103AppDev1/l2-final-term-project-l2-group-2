@@ -128,8 +128,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 .header {
   width: 99%;
-  background-color: #5a7693;
-  color: white;
+  background-color: #6585a8;
+  color: rgb(255, 255, 255);
   padding: 1rem;
   text-align: center;
   font-weight:lighter;
@@ -143,7 +143,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 .header p {
   font-size: 18.5px;
-  color: rgb(244, 244, 244);
+  color: rgb(252, 251, 251);
   font-weight:500;
 }
 

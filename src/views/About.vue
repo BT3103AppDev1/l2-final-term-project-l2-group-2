@@ -83,39 +83,39 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  max-height: 70%;
 }
 
 .img {
-  width: 43%; 
+  width: 40%; 
   height: auto;
   margin-right: 2rem;
 }
 
 .text-content {
-  width: 50%;
-  background-color: rgb(196, 217, 224);
+  max-width: 60%;
+  background-color: #dbf2fd;
   padding: 1rem;
   overflow: hidden; /* Prevents content from overflowing */
   box-sizing: border-box; /* Includes padding in width calculation */
-  height: 45vh;
+  max-height: 45vh;
 }
 
 .text-content h1 {
-  font-size: 3rem; /* More responsive font size */
+  font-size: 1.45rem; /* More responsive font size */
   color: #333;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .text-content p {
   color:  #4b4a4a;
-  font-size: 1.5rem; /* More appropriate text size */
-  padding: 2rem 0rem; /* Adds padding to text */
+  font-size: 1.05rem; /* More appropriate text size */
   line-height: 1.75;
   text-align: justify;
-  margin-left: 4rem;
-  margin-right: 4rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .logout-container {
@@ -131,8 +131,8 @@ export default {
   flex-wrap: wrap;
   gap: 2rem;
   padding: 2rem;
-  background-color: #dbf2fd;
-  width: 100%; /* Sets the width to be the full width of the viewport */
+  background-color: white;
+  width: 80%; /* Sets the width to be the full width of the viewport */
   box-sizing: border-box; /* Ensures padding does not affect the total width */
 }
 
