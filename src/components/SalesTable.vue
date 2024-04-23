@@ -103,13 +103,15 @@ export default {
 
 .styled-table thead th:nth-child(even) {
   background-color: rgb(190, 188, 188);
+}
+
+.styled-table thead th {
+  border-bottom: 2px solid rgb(71, 71, 71);
   text-align: left;
-    
 }
 
 .styled-table thead th:nth-child(odd) {
   background-color: lightgray;
-  text-align: left;
 }
 
 .styled-table th,
@@ -123,10 +125,10 @@ export default {
 }
 
 .styled-table tbody td:nth-child(even) {
-  background-color: rgb(190, 188, 188);
+  background-color: rgb(208, 206, 206);
 }
 
 .styled-table tbody td:nth-child(odd) {
-    background-color: lightgray;
+    background-color: rgb(221, 221, 221);
 }
 </style>

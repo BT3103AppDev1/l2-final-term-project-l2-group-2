@@ -90,14 +90,17 @@ methods: {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.styled-table thead th:nth-child(2) {
+.styled-table thead th:nth-child(even) {
   background-color: rgb(190, 188, 188);
+}
+
+.styled-table thead th {
+  border-bottom: 2px solid rgb(71, 71, 71);
   text-align: left;
 }
 
-.styled-table thead th:nth-child(1) {
+.styled-table thead th:nth-child(odd) {
   background-color: lightgray;
-  text-align: left;
 }
 
 .styled-table th,
@@ -110,12 +113,12 @@ methods: {
     border-bottom: 1px solid #dddddd;
 }
 
-.styled-table tbody td:nth-of-type(even) {
-  background-color: rgb(190, 188, 188);
+.styled-table tbody td:nth-child(even) {
+  background-color: rgb(208, 206, 206);
 }
 
 .styled-table tbody td:nth-child(odd) {
-    background-color: lightgray;
+    background-color: rgb(221, 221, 221);
 }
 </style>
 
