@@ -76,7 +76,7 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   align-items: center;
 }
 
@@ -91,7 +91,7 @@ export default {
 
 .img {
   width: 40%; 
-  height: auto;
+  max-height: 40vh;
   margin-right: 2rem;
 }
 

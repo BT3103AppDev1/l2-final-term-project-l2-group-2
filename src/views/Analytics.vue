@@ -74,7 +74,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 .analytics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  grid-template-columns: repeat(3, 1fr); 
   grid-auto-rows: 1fr;
   width: 65%;
   gap: 50px;
@@ -111,7 +111,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 .analytics-section p {
   margin-top: 10px;
-  font-size: 17.5px;
+  font-size: 1rem;
   line-height: 1.6;
   text-align: center;
   letter-spacing: 0.03em;
@@ -119,12 +119,12 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 .analytics-section h3 {
   margin-top: 10px;
-  font-size: 19.5px;
+  font-size: 1.2rem;
   text-align: center;
 }
 
 .log-out {
-  margin-top: auto; 
+  padding-top: 2rem; 
   text-align: center; 
   padding-bottom: 1rem; 
 }
@@ -136,16 +136,18 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
   padding: 1rem;
   text-align: center;
   font-weight:lighter;
+  margin-top: -1px;
   border-radius: 8px;
 }
 
+
 .header h2 {
-  font-size: 27.5px;
+  font-size: 1.4rem;
   margin-bottom: 2rem;
 }
 
 .header p {
-  font-size: 18.5px;
+  font-size: 1.1rem;
   color: rgb(252, 251, 251);
   font-weight:500;
 }

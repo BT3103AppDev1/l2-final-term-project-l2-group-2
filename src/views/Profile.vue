@@ -3,12 +3,12 @@
   <div class = "navbar-container">
     <NavBar/>
   </div>
-<<<<<<< HEAD
   <div class = "header">
     <h2> Profile </h2>
-    <p> Check profile details </p>
+    <p> View profile details </p>
   </div>
   <div class = "content">
+    <div class = "text-content">
     Name: {{ user.displayName }}
     <br/>
     Email: {{ user.email }}
@@ -17,12 +17,11 @@
     <br/>
     Provider: {{ user.providerData?.[0].providerId }}
   </div>
+    <img class="img" src="@/assets/profile.jpg">
   </div>
-  <LogOut/>
-=======
+  </div>
   <LogOut />
   <FootBar />
->>>>>>> dc23eb12be807a0ebb588fd3b934337db5f9bad7
 </template>
 
 
@@ -57,10 +56,13 @@ export default {
 
 <style scoped> 
 .profile {
-  align-items: center; 
-  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
   width: 100%;
+  align-items: center;
 }
+
 
 .header {
   background-color: #526c87;
@@ -69,15 +71,17 @@ export default {
   text-align: center;
   font-weight:lighter;
   border-radius: 8px;
+  width: 99%;
+  margin-top: -1px;
 }
 
 .header h2 {
-  font-size: 27.5px;
+  font-size: 1.4rem;
   margin-bottom: 2rem;
 }
 
 .header p {
-  font-size: 18.5px;
+  font-size: 1.2rem;
   color: rgb(249, 247, 247);
   font-weight:500;
 }
@@ -87,7 +91,28 @@ export default {
 }
 
 .content {
-  margin-top: 3rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.img {
+  flex: 1;
+  max-width: 50%; 
+  max-height: 40vh;
+}
+
+.text-content {
+  flex: 1;
+  max-width: 50%;
+  box-sizing: border-box; /* Includes padding in width calculation */
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 </style>

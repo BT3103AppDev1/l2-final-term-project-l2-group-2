@@ -101,11 +101,16 @@
   .footer-section {
     flex-basis: 190px; /* Adjust the base width as needed */
     margin: 10px;
+    line-height: 1.3;
   }
   
   .footer-list {
     list-style-type: none; /* Remove bullets */
     padding: 0;
+  }
+
+  .li {
+    margin: 3% 0;
   }
   
   .footer-link {
@@ -120,6 +125,7 @@
   
   .description-subscription {
     flex-basis: 390px; /* Adjust base width for the fourth column as needed */
+    margin-left: 1.3rem;
   }
   .description-subscription h5 {
   font-size: 1.5rem; /* Increase the font size of the OnTrack header */
@@ -132,6 +138,7 @@
   margin-bottom: 20px; /* Space between description and subscription box */
   text-align: justify; /* Justify the company description text */
   font-size: 0.9rem;
+  line-height: 1.6;
 }
   
   .email-subscription {
