@@ -95,32 +95,38 @@ export default {
 .styled-table {
     border-collapse: collapse;
     margin: 25px auto;
-    font-size: 0.9em;
+    font-size: 1rem;
     font-family: sans-serif;
-    min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    min-width: 800px;
 }
 
-.styled-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
+.styled-table thead th:nth-child(even) {
+  background-color: rgb(190, 188, 188);
+  text-align: left;
+    
+}
+
+.styled-table thead th:nth-child(odd) {
+  background-color: lightgray;
+  text-align: left;
 }
 
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
+    letter-spacing: 0.8px;
 }
 
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+.styled-table tbody td:nth-child(even) {
+  background-color: rgb(190, 188, 188);
 }
 
-.styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+.styled-table tbody td:nth-child(odd) {
+    background-color: lightgray;
 }
 </style>
