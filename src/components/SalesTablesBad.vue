@@ -20,7 +20,7 @@
       </tbody>
     </table>
     <canvas ref="myBarChart" width="150" height="80"></canvas>
-    <h2>test</h2>
+
   </div>
 </template>
 
@@ -30,6 +30,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDocs, collection, query, orderBy, limit } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 const db = getFirestore(firebaseApp);
 
@@ -72,7 +73,7 @@ export default {
             name: data.Item,
             price: data.Price,
             Quantitysold: data.Quantitysold,
-            profit: profit,
+            profit: profit.toFixed(2),
             cost: data.Cost
           });
         });
@@ -90,43 +91,84 @@ export default {
     },
 
     createBarChart() {
-    this.$nextTick(() => {
-      const ctx = this.$refs.myBarChart.getContext('2d');
-      // Using dummy data
-      const data = {
-        labels: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
-        datasets: [{
-          label: 'Profit',
-          data: [10, 20, 30, 40], // Dummy profit values
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)'
-          ],
-          borderWidth: 1
-        }]
-      };
+      this.$nextTick(() => {
+        const ctx = this.$refs.myBarChart.getContext('2d');
+        // Dynamically generating labels and data from LowProfitItems
+        const labels = this.LowProfitItems.map(item => item.name);
+        const profitsData = this.LowProfitItems.map(item => item.profit);
 
-      const myBarChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Profit',
+            data: profitsData,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)', // pink
+              'rgba(54, 162, 235, 0.2)', // blue
+              'rgba(255, 206, 86, 0.2)', // yellow
+              'rgba(75, 192, 192, 0.2)', // green
+              'rgba(153, 102, 255, 0.2)', // purple
+              'rgba(255, 159, 64, 0.2)',  // orange
+              'rgba(199, 199, 199, 0.2)', // grey
+              'rgba(83, 102, 255, 0.2)',  // indigo
+              'rgba(255, 99, 255, 0.2)',  // magenta
+              'rgba(255, 99, 132, 0.2)'   // repeat the first color for the 10th item
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)', // pink
+              'rgba(54, 162, 235, 1)', // blue
+              'rgba(255, 206, 86, 1)', // yellow
+              'rgba(75, 192, 192, 1)', // green
+              'rgba(153, 102, 255, 1)', // purple
+              'rgba(255, 159, 64, 1)',  // orange
+              'rgba(199, 199, 199, 1)', // grey
+              'rgba(83, 102, 255, 1)',  // indigo
+              'rgba(255, 99, 255, 1)',  // magenta
+              'rgba(255, 99, 132, 1)'   // repeat the first color for the 10th item
+            ],
+            borderWidth: 1
+          }]
+        };
+
+        const myBarChart = new Chart(ctx, {
+          type: 'bar',
+          data: data,
+          options: {
+            layout: {
+              padding: {
+                top: 30 // Add more space at the top of the chart
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true
+              },
+              x: {
+                ticks: {
+                  font: {
+                    weight: 'bold' // This will make the x-axis labels bold
+                  }
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false // This will hide the legend
+              },
+              datalabels: {
+                color: '#000',
+                anchor: 'end',
+                align: 'top',
+                formatter: (value, context) => {
+                  return '$' + value; // Display the profit value on top of each bar
+                }
+              }
             }
-          }
-        }
+          },
+          plugins: [ChartDataLabels]
+        });
       });
-    });
-  },
+    },
 
   }
 }

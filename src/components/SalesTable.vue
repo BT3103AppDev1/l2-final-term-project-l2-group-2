@@ -70,7 +70,7 @@ export default {
             name: data.Item,
             price: data.Price,
             Quantitysold: data.Quantitysold,
-            profit: profit,
+            profit: profit.toFixed(2),
             cost: data.Cost
             
           });
