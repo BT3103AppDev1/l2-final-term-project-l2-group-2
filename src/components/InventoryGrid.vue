@@ -90,6 +90,7 @@ export default {
             await updateDoc(itemRef, updateData);
             alert("Item sold successfully!");
             this.$emit("updated"); // Emit event to notify parent component of the update
+            await this.fetchProducts(this.useremail);
         } else {
             // Item does not exist in the database
             alert("Item not found in the database.");
