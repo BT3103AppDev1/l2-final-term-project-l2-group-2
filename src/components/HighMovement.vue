@@ -11,7 +11,7 @@
         <tbody>
           <tr v-for="(item, index) in HighMovementItems.slice(0,10)" :key="index">
             <td>{{ item.name }}</td>
-            <td>{{ item.sales }}</td>
+            <td>{{ item.Quantitysold }}</td>
           </tr>
         </tbody>
       </table>
@@ -60,10 +60,10 @@ methods: {
         items.push({
           key: doc.id,
           name: data.Item,
-          sales: data.Sales,
+          Quantitysold: data.Quantitysold,
         });
       });
-      console.log("All items:", items);
+      console.log("All sold items:", items);
 
 
       console.log("Items sorted by sales:", items);
