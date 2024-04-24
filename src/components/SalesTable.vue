@@ -64,7 +64,7 @@ export default {
           const Quantitysold = data.Quantitysold;
           const cost = data.Cost;
           const profit = (price - cost) * Quantitysold;
-          //const cost = data.Cost;
+          
           items.push({
             key: doc.id,
             name: data.Item,

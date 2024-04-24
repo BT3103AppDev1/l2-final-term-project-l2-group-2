@@ -14,8 +14,8 @@
         <tr v-for="(item, index) in LowProfitItems.slice(0, 10)" :key="index">
           <td>{{ item.name }}</td>
           <td>{{ '$' + item.price }}</td>
-          <td>{{ item.sales }}</td>
-          <td>{{ '$' + item.profit.toFixed(2) }}</td>
+          <td>{{ item.Quantitysold }}</td>
+          <td>{{ '$' + item.profit }}</td>
         </tr>
       </tbody>
     </table>
@@ -64,14 +64,16 @@ export default {
           const data = doc.data();
           console.log("Retrieved data for document", doc.id + ":", data);
           const price = data.Price;
-          const sales = data.Sales;
-          const profit = price * sales;
+          const Quantitysold = data.Quantitysold;
+          const cost = data.Cost;
+          const profit = (price - cost) * Quantitysold;
           items.push({
             key: doc.id,
             name: data.Item,
             price: data.Price,
-            sales: data.Sales,
-            profit: profit
+            Quantitysold: data.Quantitysold,
+            profit: profit,
+            cost: data.Cost
           });
         });
         console.log("All items:", items);
