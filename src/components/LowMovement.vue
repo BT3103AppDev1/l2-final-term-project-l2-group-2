@@ -11,7 +11,7 @@
         <tbody>
           <tr v-for="(item, index) in LowMovementItems.slice(0,10)" :key="index">
             <td>{{ item.name }}</td>
-            <td>{{ item.sales }}</td>
+            <td>{{ item.Quantitysold }}</td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +50,7 @@ methods: {
   async fetchLowMovementItems(useremail) {
     try {
       console.log("Fetching data for user:", useremail);
-      const q = query(collection(db, useremail), orderBy('Sales', 'asc'));
+      const q = query(collection(db, useremail), orderBy('Quantitysold', 'asc'));
       const querySnapshot = await getDocs(q);
       const items = [];
       querySnapshot.forEach((doc) => {
@@ -59,7 +59,7 @@ methods: {
         items.push({
           key: doc.id,
           name: data.Item,
-          sales: data.Sales,
+          Quantitysold: data.Quantitysold,
         });
       });
       console.log("All items:", items);

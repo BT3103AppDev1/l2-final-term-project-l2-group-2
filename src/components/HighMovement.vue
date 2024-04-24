@@ -51,7 +51,7 @@ methods: {
   async fetchHighMovementItems(useremail) {
     try {
       console.log("Fetching data for user:", useremail);
-      const q = query(collection(db, useremail), orderBy('Sales', 'desc'));
+      const q = query(collection(db, useremail), orderBy('Quantitysold', 'desc'));
       const querySnapshot = await getDocs(q);
       const items = [];
       querySnapshot.forEach((doc) => {
