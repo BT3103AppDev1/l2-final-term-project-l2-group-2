@@ -42,7 +42,6 @@ export default {
 
 #btn:hover {
   color: rgb(243, 236, 236);
-  background-color: rgb(255, 94, 0);
-  box-shadow: 3px 3px grey;
+  background-color: rgb(111, 111, 111);
 }
 </style>

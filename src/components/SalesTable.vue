@@ -91,7 +91,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Center align the table */
 .center {
   margin: 0 auto;
@@ -122,17 +121,16 @@ export default {
 .styled-table td {
     padding: 12px 15px;
     letter-spacing: 0.8px;
-}
-
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+    text-align: left;
 }
 
 .styled-table tbody td:nth-child(even) {
-  background-color: rgb(208, 206, 206);
+  background-color: rgb(206, 206, 206);
+  border-bottom: 1px solid #dddddd;
 }
 
 .styled-table tbody td:nth-child(odd) {
     background-color: rgb(221, 221, 221);
+    border-bottom: 1px solid #c7c7c7;
 }
 </style>

@@ -5,10 +5,14 @@
       <h3>{{ product.name }}</h3>
       <p>{{ product.description }}</p>
       <div class="price">${{ product.price.toFixed(2) }}</div>
+      <br/>
       <div class="quantity">Current Stock: {{ product.quantity }}</div>
+      <br/>
       <div class="quantity">LifeTime Stock: {{ product.lifetime_quantity }}</div>
+      <br/>
       <div class="sell-section">
         <input type="number" class="quantity-input" v-model="product.sellQuantity" min="1">
+        <br/><br/><br/>
         <button @click="sellProduct(product.name, product.sellQuantity, useremail)">Sell</button>
       </div>
     </div>
@@ -115,8 +119,8 @@ export default {
   border: 1px solid #ddd;
   padding: 1rem;
   margin: 1rem;
-  width: 250px;
-  min-height: 50px;
+  max-width: 75%;
+  max-height: 50%;
   text-align: center;
 }
 
